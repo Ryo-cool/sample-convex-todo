@@ -1,7 +1,8 @@
 # 🌟 Liquid Glass ToDo App
 
 Next.js + Convex で構築された、リアルタイムコラボレーション機能を持つプレミアムToDo アプリケーション
-![タイトルなし](https://github.com/user-attachments/assets/9af076a0-129e-45aa-a3d2-3dd1d98fc170)
+![タイトルなし](https://github.com/user-attachments/assets/17730bfd-2864-44c1-b9f1-2408895da9bd)
+
 ## ✨ 主な機能
 
 ### 🎨 Liquid Glass UI
@@ -109,91 +110,6 @@ npm run dev
 2. **リアルタイム同期** - 一方でタスクを追加/編集すると即座に他方に反映
 3. **編集状態** - タスクを編集中の場合、他のユーザーに編集中表示
 
-## 🏗️ プロジェクト構造
-
-```
-sample-convex-todo/
-├── app/                          # Next.js App Router
-│   ├── components/              # React コンポーネント
-│   │   ├── Header.tsx          # ヘッダーコンポーネント
-│   │   ├── TodoForm.tsx        # タスク追加フォーム
-│   │   ├── TodoItem.tsx        # 個別タスクアイテム
-│   │   ├── TodoList.tsx        # メインのリストコンポーネント
-│   │   ├── SearchAndFilter.tsx # 検索・フィルターUI
-│   │   ├── ActiveUsers.tsx     # アクティブユーザー表示
-│   │   ├── StatsPanel.tsx      # 統計ダッシュボード
-│   │   └── EmptyState.tsx      # 空状態表示
-│   ├── hooks/                   # カスタムフック
-│   │   └── usePresence.ts      # プレゼンス管理フック
-│   ├── globals.css             # グローバルスタイル
-│   ├── layout.tsx              # ルートレイアウト
-│   └── page.tsx                # ホームページ
-├── convex/                      # Convex バックエンド
-│   ├── _generated/             # Convex 生成ファイル
-│   ├── schema.ts               # データベーススキーマ
-│   ├── todos.ts                # ToDo 関連の関数
-│   └── presence.ts             # プレゼンス管理関数
-├── public/                      # 静的ファイル
-├── .eslintrc.json              # ESLint 設定
-├── .prettierrc                 # Prettier 設定
-├── convex.json                 # Convex 設定
-├── next.config.js              # Next.js 設定
-├── package.json                # npm 設定
-├── tailwind.config.ts          # Tailwind CSS 設定
-└── tsconfig.json               # TypeScript 設定
-```
-
-## 🎨 カスタマイズ
-
-### テーマのカスタマイズ
-`app/globals.css` の CSS 変数を変更してテーマをカスタマイズできます：
-
-```css
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-/* グラデーション背景 */
-body {
-  background: linear-gradient(
-    135deg,
-    #667eea 0%,
-    #764ba2 25%,
-    #f093fb 50%,
-    #4facfe 75%,
-    #667eea 100%
-  );
-}
-```
-
-### ユーザーカラーの追加
-`app/hooks/usePresence.ts` でユーザーカラーパレットを編集：
-
-```typescript
-const USER_COLORS = [
-  "#FF6B6B", // 赤
-  "#4ECDC4", // ティール
-  "#45B7D1", // 青
-  // 新しい色を追加...
-];
-```
-
-## 🚀 デプロイ
-
-### Vercel（推奨）
-1. GitHub にプッシュ
-2. Vercel でリポジトリをインポート
-3. 環境変数を設定
-4. デプロイ
-
-## 📈 パフォーマンス
-
-### 最適化機能
-- **メモ化** - 検索結果の `useMemo` キャッシュ
-- **仮想化** - 大量のタスクに対応（将来実装予定）
-- **プリロード** - 静的リソースの事前読み込み
-- **Code Splitting** - Next.js による自動コード分割
 
 
 ### 開発セットアップ
@@ -222,15 +138,4 @@ const USER_COLORS = [
 - [ ] 🔄 リアルタイムダッシュボード（統計、グラフ）
 - [ ] 🔄 オフライン対応とオプティミスティックアップデート
 
-## 👥 チーム
-
-- **開発者** - Anthropic Claude (AI Assistant)
-- **プロジェクト管理** - Todo List driven development
-
-## 🙏 謝辞
-
-- **Convex** - 素晴らしいリアルタイムデータベース
-- **Next.js チーム** - 優れた React フレームワーク
-- **Tailwind CSS** - 美しいデザインシステム
-- **コミュニティ** - オープンソースの貢献者たち
 
