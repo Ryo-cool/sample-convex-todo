@@ -1,7 +1,36 @@
 # 🌟 Liquid Glass ToDo App
 
+**Convex サンプルアプリケーション**
+
 Next.js + Convex で構築された、リアルタイムコラボレーション機能を持つプレミアムToDo アプリケーション
+
+> このプロジェクトは、Convex の機能を実演するために作成されたサンプルアプリケーションです。リアルタイムデータベース、リアクティブクエリ、プレゼンス管理など、Convex の主要機能を実装例として紹介しています。
 ![タイトルなし](https://github.com/user-attachments/assets/17730bfd-2864-44c1-b9f1-2408895da9bd)
+
+## 🚀 Convex とは？
+
+**Convex** は、モダンなWebアプリケーション開発のための次世代のバックエンドプラットフォームです。
+
+### 🌟 Convex の主要な特徴
+
+- **🔄 リアルタイム同期** - データの変更が即座に全クライアントに反映
+- **📊 リアクティブクエリ** - データベースの変更を監視して自動的にUIを更新
+- **⚡ サーバーレス関数** - TypeScript で書けるサーバーサイド関数
+- **🛡️ 型安全性** - エンドツーエンドの TypeScript サポート
+- **🌐 プレゼンス管理** - ユーザーのオンライン状態やリアルタイムコラボレーション
+- **📈 スケーラビリティ** - 自動スケーリングとパフォーマンス最適化
+- **🔍 インデックス** - 高速クエリのための自動インデックス作成
+
+### 🎯 なぜ Convex を選ぶのか？
+
+従来のバックエンド開発では、リアルタイム同期やデータベース管理、API設計などを個別に構築する必要がありました。Convex はこれらを統合的に提供し、開発者がフロントエンドの開発に集中できるようにします。
+
+- **開発速度の向上** - ボイラープレートコードの削減
+- **リアルタイム機能の簡単実装** - WebSocket や状態管理の複雑さを隠蔽
+- **型安全なAPI** - フロントエンドとバックエンドの型同期
+- **運用の簡素化** - インフラ管理不要
+
+**📚 Convex について詳しく：** [公式ドキュメント](https://docs.convex.dev/) | [公式サイト](https://www.convex.dev/)
 
 ## ✨ 主な機能
 
@@ -43,10 +72,19 @@ Next.js + Convex で構築された、リアルタイムコラボレーション
 - **Tailwind CSS** - ユーティリティファーストCSS
 - **React Hooks** - モダンなReact開発
 
-### バックエンド
-- **Convex** - リアルタイムデータベース＆API
-- **リアルタイム同期** - WebSocket による即座のデータ同期
-- **プレゼンス管理** - ユーザーのオンライン状態管理
+### バックエンド（Convex活用）
+- **Convex Database** - NoSQL ドキュメントデータベース（todos, presence テーブル）
+- **Convex Functions** - TypeScript サーバー関数（Query / Mutation）
+- **リアルタイム同期** - リアクティブクエリによる自動UI更新
+- **プレゼンス管理** - マルチユーザーのオンライン状態管理
+- **自動型生成** - Convex スキーマからの TypeScript 型自動生成
+
+#### 📋 このアプリで実装された Convex 機能
+- `useQuery(api.todos.getTodos)` - リアクティブなタスク一覧取得
+- `useMutation(api.todos.createTodo)` - 楽観的更新でのタスク作成
+- `useQuery(api.presence.getActiveUsers)` - リアルタイムユーザープレゼンス
+- 自動クリーンアップ機能付きプレゼンス管理
+- クライアントサイド検索とフィルタリング
 
 ### 開発ツール
 - **ESLint** - コード品質管理
@@ -110,7 +148,72 @@ npm run dev
 2. **リアルタイム同期** - 一方でタスクを追加/編集すると即座に他方に反映
 3. **編集状態** - タスクを編集中の場合、他のユーザーに編集中表示
 
+## 🏗️ プロジェクト構造
 
+```
+sample-convex-todo/
+├── app/                          # Next.js App Router
+│   ├── components/              # React コンポーネント
+│   │   ├── Header.tsx          # ヘッダーコンポーネント
+│   │   ├── TodoForm.tsx        # タスク追加フォーム
+│   │   ├── TodoItem.tsx        # 個別タスクアイテム
+│   │   ├── TodoList.tsx        # メインのリストコンポーネント
+│   │   ├── SearchAndFilter.tsx # 検索・フィルターUI
+│   │   ├── ActiveUsers.tsx     # アクティブユーザー表示
+│   │   ├── StatsPanel.tsx      # 統計ダッシュボード
+│   │   └── EmptyState.tsx      # 空状態表示
+│   ├── hooks/                   # カスタムフック
+│   │   └── usePresence.ts      # プレゼンス管理フック
+│   ├── globals.css             # グローバルスタイル
+│   ├── layout.tsx              # ルートレイアウト
+│   └── page.tsx                # ホームページ
+├── convex/                      # Convex バックエンド
+│   ├── _generated/             # Convex 生成ファイル
+│   ├── schema.ts               # データベーススキーマ
+│   ├── todos.ts                # ToDo 関連の関数
+│   └── presence.ts             # プレゼンス管理関数
+├── public/                      # 静的ファイル
+├── .eslintrc.json              # ESLint 設定
+├── .prettierrc                 # Prettier 設定
+├── convex.json                 # Convex 設定
+├── next.config.js              # Next.js 設定
+├── package.json                # npm 設定
+├── tailwind.config.ts          # Tailwind CSS 設定
+└── tsconfig.json               # TypeScript 設定
+```
+
+## 🎨 Convex の学習リソース
+
+このサンプルアプリを参考に、Convex の機能を学習できます：
+
+### 📖 実装例から学べること
+
+1. **データベース設計** - `convex/schema.ts`
+   - NoSQL ドキュメント設計
+   - リレーション無しのシンプルな構造
+
+2. **サーバー関数** - `convex/todos.ts`, `convex/presence.ts`
+   - Query と Mutation の書き方
+   - データ検証とバリデーション
+   - 楽観的更新の実装
+
+3. **リアルタイム機能** - `app/hooks/usePresence.ts`
+   - プレゼンス管理の実装
+   - 自動クリーンアップ機能
+   - ブラウザイベントとの連携
+
+4. **フロントエンド統合** - React コンポーネント群
+   - `useQuery` と `useMutation` の使い方
+   - TypeScript 型安全性の活用
+   - リアクティブUI の構築
+
+### 🚀 次のステップ
+
+- [Convex クイックスタート](https://docs.convex.dev/quickstart)
+- [Convex University](https://www.convex.dev/university) - 無料学習コース
+- [Convex Discord](https://www.convex.dev/community) - コミュニティサポート
+
+## 🤝 コントリビューション
 
 ### 開発セットアップ
 1. フォークして clone
@@ -138,4 +241,27 @@ npm run dev
 - [ ] 🔄 リアルタイムダッシュボード（統計、グラフ）
 - [ ] 🔄 オフライン対応とオプティミスティックアップデート
 
+## 📄 ライセンス
 
+MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照
+
+## 👥 チーム
+
+- **開発者** - Anthropic Claude (AI Assistant)
+- **プロジェクト管理** - Todo List driven development
+
+## 🙏 謝辞
+
+- **[Convex チーム](https://www.convex.dev/)** - 革新的なリアルタイムバックエンドプラットフォームの開発
+- **Next.js チーム** - 優れた React フレームワーク
+- **Tailwind CSS** - 美しいデザインシステム
+- **オープンソースコミュニティ** - 素晴らしいライブラリとツールの提供
+
+---
+
+**🌟 Convex を使ったリアルタイムアプリ開発に興味がある方は、ぜひこのリポジトリをスターしてください！**
+
+**📞 Convex について質問がある場合は：**
+- [Convex Discord](https://www.convex.dev/community) でコミュニティに質問
+- [Convex ドキュメント](https://docs.convex.dev/) で詳細な情報を確認
+- [Convex ブログ](https://blog.convex.dev/) で最新情報をチェック
