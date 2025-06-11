@@ -1,9 +1,7 @@
 # 🌟 Liquid Glass ToDo App
 
 Next.js + Convex で構築された、リアルタイムコラボレーション機能を持つプレミアムToDo アプリケーション
-
-![App Screenshot](https://via.placeholder.com/800x400/667eea/ffffff?text=Liquid+Glass+ToDo+App)
-
+![タイトルなし](https://github.com/user-attachments/assets/9af076a0-129e-45aa-a3d2-3dd1d98fc170)
 ## ✨ 主な機能
 
 ### 🎨 Liquid Glass UI
@@ -189,11 +187,6 @@ const USER_COLORS = [
 3. 環境変数を設定
 4. デプロイ
 
-### その他のプラットフォーム
-- Netlify
-- AWS Amplify
-- Railway
-
 ## 📈 パフォーマンス
 
 ### 最適化機能
@@ -202,12 +195,6 @@ const USER_COLORS = [
 - **プリロード** - 静的リソースの事前読み込み
 - **Code Splitting** - Next.js による自動コード分割
 
-### ベンチマーク
-- **初回読み込み** - ~127KB (gzipped)
-- **検索レスポンス** - <50ms
-- **リアルタイム同期** - <100ms
-
-## 🤝 コントリビューション
 
 ### 開発セットアップ
 1. フォークして clone
@@ -235,10 +222,6 @@ const USER_COLORS = [
 - [ ] 🔄 リアルタイムダッシュボード（統計、グラフ）
 - [ ] 🔄 オフライン対応とオプティミスティックアップデート
 
-## 📄 ライセンス
-
-MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照
-
 ## 👥 チーム
 
 - **開発者** - Anthropic Claude (AI Assistant)
@@ -251,6 +234,3 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照
 - **Tailwind CSS** - 美しいデザインシステム
 - **コミュニティ** - オープンソースの貢献者たち
 
----
-
-**🌟 このプロジェクトが気に入ったら、ぜひスターをつけてください！**
