@@ -1,26 +1,301 @@
 @import "tailwindcss";
 
+/* === カスタムプロパティ === */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+	--background: #ffffff;
+	--foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
 }
 
+/* === リセット === */
+* {
+	box-sizing: border-box;
+}
+
+/* === 基本リセット（Tailwindのマージンを邪魔しないように） === */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+}
+
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	max-width: 100vw;
+	overflow-x: hidden;
+}
+
+/* === 液体グラデーション背景 === */
+body {
+	background: linear-gradient(
+		135deg,
+		#667eea 0%,
+		#764ba2 25%,
+		#f093fb 50%,
+		#4facfe 75%,
+		#667eea 100%
+	);
+	background-size: 400% 400%;
+	animation: liquidGradient 15s ease infinite;
+	color: var(--foreground);
+	font-family:
+		system-ui,
+		-apple-system,
+		sans-serif;
+	min-height: 100vh;
+	position: relative;
+}
+
+/* === オーバーレイ効果 === */
+body::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.1);
+	pointer-events: none;
+	z-index: 0;
+}
+
+/* === アニメーション === */
+@keyframes liquidGradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 0.6;
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+/* === Tailwind拡張ユーティリティ === */
+.glass {
+	@apply backdrop-blur-2xl bg-white/15 border border-white/25 shadow-xl;
+}
+
+.glass-hover {
+	@apply transition-all duration-300 hover:bg-white/20 hover:shadow-2xl;
+}
+
+.text-gradient {
+	@apply bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent;
+}
+
+.btn-primary {
+	@apply bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600
+         text-white font-bold py-3 px-6 rounded-xl transition-all duration-300
+         transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl;
+}
+
+.btn-danger {
+	@apply bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600
+         text-white font-bold py-2 px-4 rounded-lg transition-all duration-300
+         transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl;
+}
+
+.input-glass {
+	@apply bg-white/20 backdrop-blur-md border border-white/30 rounded-xl px-4 py-3
+         text-white placeholder-white/60 outline-none transition-all duration-300
+         focus:bg-white/30 focus:border-white/50 focus:ring-2 focus:ring-white/20;
+}
+
+.card-glass {
+	@apply backdrop-blur-2xl bg-white/10 border border-white/20 rounded-2xl p-6 shadow-xl
+         hover:bg-white/15 hover:shadow-2xl transition-all duration-300;
+}
+
+/* === スケール値の追加 === */
+.scale-102 {
+	transform: scale(1.02);
+}
+
+.hover\:scale-102:hover {
+	transform: scale(1.02);
+}
+
+/* === 新しいアニメーション効果 === */
+.animate-in {
+	animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.zoom-in {
+	animation: zoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes zoomIn {
+	from {
+		opacity: 0;
+		transform: scale(0.5);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* === グラデーション効果 === */
+.gradient-shimmer {
+	background: linear-gradient(
+		45deg,
+		transparent 30%,
+		rgba(255, 255, 255, 0.2) 50%,
+		transparent 70%
+	);
+	background-size: 200% 200%;
+	animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: -200% 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+/* === パフォーマンス最適化 === */
+.will-change-transform {
+	will-change: transform;
+}
+
+.will-change-opacity {
+	will-change: opacity;
+}
+
+/* === アクセシビリティ === */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* === レスポンシブ調整 === */
+@media (max-width: 640px) {
+	.glass {
+		@apply backdrop-blur-xl;
+	}
+}
+
+/* === ダークモード対応 === */
+@media (prefers-color-scheme: dark) {
+	.glass {
+		@apply bg-white/10 border-white/20;
+	}
+}
+
+/* === リアルタイムコラボレーション === */
+.cursor-trail {
+	position: fixed;
+	pointer-events: none;
+	z-index: 9999;
+	animation: cursorTrail 0.8s ease-out forwards;
+}
+
+@keyframes cursorTrail {
+	0% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(0.3);
+	}
+}
+
+.editing-pulse {
+	animation: editingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes editingPulse {
+	0%, 100% {
+		opacity: 0.4;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+}
+
+.presence-indicator {
+	position: relative;
+	overflow: hidden;
+}
+
+.presence-indicator::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.1),
+		transparent
+	);
+	animation: presenceShimmer 2s infinite;
+}
+
+@keyframes presenceShimmer {
+	0% {
+		left: -100%;
+	}
+	100% {
+		left: 100%;
+	}
 }
